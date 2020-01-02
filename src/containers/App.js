@@ -32,9 +32,9 @@ class App extends Component {
                 for (const ship of data.results) {
                     starshipsArray.push(ship);
                 }
-                console.log('array', starshipsArray);
+                //console.log('array', starshipsArray);
                 this.setState({ starships: starshipsArray });
-                console.log('state', this.state);
+                //console.log('state', this.state);
             })
     }))  
   }

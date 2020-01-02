@@ -7,6 +7,7 @@ const CardList = ({ starships, cardClick }) => {
                     key={i} 
                     name={starships[i].name} 
                     model={starships[i].model}
+                    url={starships[i].url}
                     cardClick={cardClick} 
                 />
     });
