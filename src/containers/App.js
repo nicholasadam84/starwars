@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import CardList from '../components/CardList';
 import './App.css';
+import SearchBox from '../components/SearchBox';
 
 class App extends Component {
   constructor() {
       super()
       this.state = {
-          starships: []
+        searchfield: '',  
+        starships: [],
       }
   }
 
@@ -33,10 +35,21 @@ class App extends Component {
     }))  
   }
 
+  onSearchChange = (event) => {
+    this.setState({ searchfield: event.target.value});
+  }
+
   render () {
-    const { starships } = this.state;
+    const { starships, searchfield } = this.state;
+    const filteredStarships = starships.filter(starship => {
+      return starship.name.toLowerCase().includes(searchfield.toLowerCase())
+    })
     return (
-    <CardList starships={starships} />
+      <div className={`tc`}>
+        <h1>Star Wars Fact Finder</h1>
+        <SearchBox searchChange={this.onSearchChange}/>
+        <CardList starships={filteredStarships} />
+      </div>
     );
   } 
 }
