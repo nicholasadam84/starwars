@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import CardList from '../components/CardList';
 import './App.css';
 import SearchBox from '../components/SearchBox';
+import HeroCard from '../components/HeroCard';
+import Scroll from '../components/Scroll';
+import ErrorBoundary from '../containers/ErrorBoundary';
+import CardList from '../components/CardList';
 
 class App extends Component {
   constructor() {
       super()
       this.state = {
+        hero: {},
         searchfield: '',  
         starships: [],
       }
@@ -39,6 +43,10 @@ class App extends Component {
     this.setState({ searchfield: event.target.value});
   }
 
+  onCardClick = (event) => {
+    console.log(event.target);
+  }
+
   render () {
     const { starships, searchfield } = this.state;
     const filteredStarships = starships.filter(starship => {
@@ -48,7 +56,12 @@ class App extends Component {
       <div className={`tc`}>
         <h1>Star Wars Fact Finder</h1>
         <SearchBox searchChange={this.onSearchChange}/>
-        <CardList starships={filteredStarships} />
+        <HeroCard />
+        <Scroll>
+          <ErrorBoundary>
+            <CardList starships={filteredStarships} cardClick={this.onCardClick}/>
+          </ErrorBoundary>
+        </Scroll>
       </div>
     );
   } 
