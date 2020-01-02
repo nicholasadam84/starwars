@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CardList from '../components/CardList';
 import './App.css';
 
 class App extends Component {
@@ -7,7 +8,8 @@ class App extends Component {
       this.state = {
           starships: []
       }
-  }  
+  }
+
   componentDidMount() {
     const starshipsArray = [];
     //TO-DO: Iterate through these URLs until data.next !== null (the next: property is not null)
@@ -29,14 +31,12 @@ class App extends Component {
                 console.log('state', this.state);
             })
     }))  
-  
   }
 
   render () {
+    const { starships } = this.state;
     return (
-    <div className="App">
-      <h1>Star Wars Fact Finder</h1>
-    </div>
+    <CardList starships={starships} />
     );
   } 
 }
