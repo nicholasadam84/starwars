@@ -1,22 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Card from './Card';
 
-const CardList = ({ starships, cardClick }) => {
-    const cardArray = starships.map((ship, i) => {
-        return <Card 
-                    key={i} 
-                    name={starships[i].name} 
-                    model={starships[i].model}
-                    url={starships[i].url}
-                    cardClick={cardClick} 
-                />
-    });
+class CardList extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            showHero: false,
+        }
+    }
     
-    return (
-        <div>
-            {cardArray}
-        </div>
-    )
+    render() {
+        console.log(this.props.starships);
+        const cardArray = this.props.starships.map((ship, i) => {
+            return <Card 
+                        key={i} 
+                        name={this.props.starships[i].name} 
+                        model={this.props.starships[i].model}
+                    />
+        });
+
+        return (
+            <div>
+                {cardArray}
+            </div>
+        )
+    }
 }
 
 export default CardList;
