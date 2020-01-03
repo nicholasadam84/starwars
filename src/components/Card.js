@@ -8,8 +8,8 @@ const Card = ({ name, model, url, divClick, mouseHover }) => {
             data-hero_url={url}>
             <h3 className={`tc`}>{name}</h3>
             <p>{model}</p>
-
         </div>
+
     )
 
 }
