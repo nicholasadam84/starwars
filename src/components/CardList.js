@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Card from './Card';
+import HeroCard from './HeroCard';
 
 class CardList extends Component {
     constructor(props) {
@@ -11,29 +12,47 @@ class CardList extends Component {
     }
     
     handleDivClick = (event) => {
-        console.log('handleDivClick', event.currentTarget.dataset.hero_url);
+        //console.log('handleDivClick', event.currentTarget.dataset.hero_url);
         this.setState({ heroURL: event.currentTarget.dataset.hero_url });
+        this.setState({ showHero: true });
     }
 
+    handleBackClick = (event) => {
+        this.setState({ showHero: false });
+    }
+    
     render() {
-        //console.log(this.props);
-        //console.log(this.props.starships);
-        console.log('state', this.state.heroURL);
-        const cardArray = this.props.starships.map((ship, i) => {
-            return <Card 
-                        key={i} 
-                        name={this.props.starships[i].name} 
-                        model={this.props.starships[i].model}
-                        url={this.props.starships[i].url}
-                        divClick={this.handleDivClick}
-                    />
-        });
+        const heroData = this.props.unfilteredStarships.filter(starship => {
+            return starship.url.includes(this.state.heroURL)
+        })
 
-        return (
-            <div>
-                {cardArray}
-            </div>
-        )
+        if (this.state.showHero) {
+            return (
+                <div>
+                    <HeroCard 
+                        hero={heroData}
+                        backClick={this.handleBackClick}
+                        unfilteredStarships={this.props.unfilteredStarships}
+                    />
+                </div>
+            )
+        } else {
+            const cardArray = this.props.starships.map((ship, i) => {
+                return <Card 
+                            key={i} 
+                            name={this.props.starships[i].name} 
+                            model={this.props.starships[i].model}
+                            url={this.props.starships[i].url}
+                            divClick={this.handleDivClick}
+                        />
+            });
+            
+            return (
+                <div>
+                    {cardArray}
+                </div>
+            )
+        }
     }
 }
 

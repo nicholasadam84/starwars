@@ -46,11 +46,11 @@ class App extends Component {
     })
     return (
       <div className={`tc`}>
-        <h1>Star Wars Fact Finder</h1>
+        <h1>Star Wars Starship Facts</h1>
         <SearchBox searchChange={this.onSearchChange}/>
         <Scroll>
           <ErrorBoundary>
-            <CardList starships={filteredStarships}/>
+            <CardList unfilteredStarships={starships} starships={filteredStarships} />
           </ErrorBoundary>
         </Scroll>
       </div>
