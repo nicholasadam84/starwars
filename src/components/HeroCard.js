@@ -1,13 +1,15 @@
 import React from 'react';
 import './HeroCard.css'
 
-const HeroCard = ({ hero, backClick }) => {
+const HeroCard = ({ hero, backClick, mouseHover }) => {
     hero = hero[0];
+    console.log(hero);
 
             return (
         <div className={`bg-light-blue dib br3 pa3 ma2 bw2 shadow-5`}>
             <button className={`fl`}
                onClick={backClick}
+               onMouseOver={mouseHover}
                > 
                Back
             </button>
@@ -24,8 +26,8 @@ const HeroCard = ({ hero, backClick }) => {
             <p><span>Max Megalights (per hour):&nbsp;</span>{hero.MGLT}</p>
             <p><span>Cargo Capacity (in kilograms):&nbsp;</span>{hero.cargo_capacity}</p>
             <p><span>Consumable Resupplly Max Time:&nbsp;</span>{hero.consumables}</p>
-            <p><span>Films:&nbsp;</span></p>
-            <p><span>Pilots:&nbsp;</span></p>
+            <p><span>Films:&nbsp;</span>{hero.films}</p>
+            <p><span>Pilots:&nbsp;</span>{hero.pilots}</p>
         </div>
     )
 

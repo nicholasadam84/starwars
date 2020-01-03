@@ -20,6 +20,10 @@ class CardList extends Component {
     handleBackClick = (event) => {
         this.setState({ showHero: false });
     }
+
+    onMouseHover(event) {
+        event.target.style.cursor = 'pointer';
+    }
     
     render() {
         const heroData = this.props.unfilteredStarships.filter(starship => {
@@ -33,6 +37,7 @@ class CardList extends Component {
                         hero={heroData}
                         backClick={this.handleBackClick}
                         unfilteredStarships={this.props.unfilteredStarships}
+                        mouseHover={this.onMouseHover}
                     />
                 </div>
             )
@@ -44,6 +49,7 @@ class CardList extends Component {
                             model={this.props.starships[i].model}
                             url={this.props.starships[i].url}
                             divClick={this.handleDivClick}
+                            mouseHover={this.onMouseHover}
                         />
             });
             
